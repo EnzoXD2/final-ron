@@ -19,7 +19,7 @@ import sys.io.Process;
 import lime.app.Application;
 #if desktop
 import important.Discord.DiscordClient;
-#end
+#end // test
 
 using StringTools;
 
