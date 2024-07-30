@@ -13,10 +13,6 @@ import openfl.utils.AssetType;
 import openfl.utils.Assets as OpenFlAssets;
 import lime.utils.Assets;
 import flixel.FlxSprite;
-#if sys
-import sys.io.File;
-import sys.FileSystem;
-#end
 import flixel.graphics.FlxGraphic;
 import openfl.display.BitmapData;
 import haxe.Json;
@@ -183,12 +179,12 @@ class Paths
 
 	static public function video(key:String)
 	{
-		return 'assets/videos/$key.$VIDEO_EXT';
+		return Generic.returnPath() + 'assets/videos/$key.$VIDEO_EXT';
 	}
 
-	static public function videoRon(key:String, ?library:String)
+	static public function truevideo(key:String)
 	{
-		return getPath('videos/$key.mp4', BINARY, library);
+		return 'assets/videos/$key.$VIDEO_EXT';
 	}
 
 	static public function sound(key:String, ?library:String):Sound
@@ -231,19 +227,6 @@ class Paths
 
 	static public function getTextFromFile(key:String, ?ignoreMods:Bool = false):String
 	{
-		#if sys
-		if (FileSystem.exists(getPreloadPath(key)))
-			return File.getContent(getPreloadPath(key));
-
-		if (currentLevel != null)
-		{
-			var levelPath:String = '';
-			levelPath = getLibraryPathForce(key, currentLevel);
-			if (FileSystem.exists(levelPath))
-				return File.getContent(levelPath);
-
-		}
-		#end
 		return Assets.getText(getPath(key, TEXT));
 	}
 
