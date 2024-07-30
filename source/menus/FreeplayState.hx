@@ -300,6 +300,11 @@ class FreeplayState extends MusicBeatState
 		var modeText = new FlxText(10, 10, 0, FreeplayState.mode.toUpperCase(), 48);
 		modeText.setFormat(Paths.font("w95.otf"), 48, FlxColor.WHITE, LEFT);
 		add(modeText);
+
+		#if android
+		addVirtualPad(LEFT_FULL, A_B);
+		#end
+
 		super.create();
 
 	}
@@ -480,8 +485,8 @@ class FreeplayState extends MusicBeatState
 			
 			if ((songLowercase == 'trojan-virus') && !(FlxG.keys.pressed.ALT))
 			{
-				var video:misc.MP4Handler = new misc.MP4Handler();
-				video.playMP4(Paths.videoRon('trojan-virus'), new PlayState(), false, false, false);
+				var video:hxcodec.VideoHandler= new misc.VideoHandler();
+				video.playMP4(Paths.video('trojan-virus'), new PlayState(), false, false, false);
 			}
 			else
 				{
