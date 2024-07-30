@@ -25,13 +25,12 @@
 
 	<!--HTML5-specific-->
 	<window if="html5" resizable="true" />
-	<haxelib name="hxCodec" if="desktop || android" />
 
 	<!--Desktop-specific-->
 	<window if="desktop" orientation="landscape" fullscreen="false" resizable="true" vsync="false"/>
 
 	<!--Mobile-specific-->
-	<window if="mobile" orientation="landscape" fullscreen="true" width="0" height="0" resizable="false"/>
+	<window if="mobile" orientation="landscape" fullscreen="true" width="1280" height="720" resizable="false" allow-shaders="true" require-shaders="true" allow-high-dpi="true" />
 
 	<!--Switch-specific-->
 	<window if="switch" orientation="landscape" fullscreen="true" width="0" height="0" resizable="true" />
@@ -99,7 +98,9 @@
 	<haxelib name="linc_luajit" if="LUA_ALLOWED"/>
 	<haxelib name="faxe" if='switch'/>
 	<!--<haxelib name="polymod"/> -->
+	<haxelib name="hxCodec" if="desktop || android" />
 	<haxelib name="discord_rpc" if="desktop"/>
+	<haxelib name="extension-androidtools"/>
 	<!-- <haxelib name="hxcpp-debug-server" if="desktop"/> -->
 
 	<!-- <haxelib name="markdown" /> -->
@@ -139,6 +140,9 @@
 
 	<!--Enable this for Nape release builds for a serious peformance improvement-->
 	<haxedef name="NAPE_RELEASE_BUILD" />
+
+    <android permission="android.permission.CAPTURE_AUDIO_OUTPUT"/>
+	<android target-sdk-version="29" if="android"/>
 
 	<!-- _________________________________ Custom _______________________________ -->
 

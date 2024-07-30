@@ -19,7 +19,7 @@ import sys.io.Process;
 import lime.app.Application;
 #if desktop
 import important.Discord.DiscordClient;
-#end // test
+#end
 
 using StringTools;
 
@@ -59,13 +59,20 @@ class Main extends Sprite
         Sys.println(errMsg);
 
         Application.current.window.alert(errMsg, "um");
+		#if windows
         DiscordClient.shutdown();
+		#end
         Sys.exit(1);
     }
 
 	public function new()
 	{
 		super();
+
+		#if android
+		Generic.initCrashHandler();
+		Generic.mode = ROOTDATA;
+		#end
 
 		if (stage != null)
 		{
@@ -89,8 +96,25 @@ class Main extends Sprite
 
 	private function setupGame():Void
 	{
+		#if android
+		if (!FileSystem.exists(Generic.returnPath() + 'assets')) {
+			FileSystem.createDirectory(Generic.returnPath() + 'assets');
+		}
+
+		if (!FileSystem.exists(Generic.returnPath() + 'assets/videos')) {
+			FileSystem.createDirectory(Generic.returnPath() + 'assets/videos');
+		}
+
+		for (video in videos) {
+			Generic.copyContent(Paths.truevideo(video), Paths.truevideo(video));
+		}
+	    #end
+		
+		#if windows
 		var data = new haxe.Http("https://github.com/FNF-CNE-Devs/CodenameEngine/blob/main/buildnumber.txt");
 		data.onData = function(d) trace(d);
+		#end // ia crashar
+
 		var stageWidth:Int = Lib.current.stage.stageWidth;
 		var stageHeight:Int = Lib.current.stage.stageHeight;
 
@@ -106,7 +130,6 @@ class Main extends Sprite
 		ClientPrefs.loadDefaultKeys();
 		addChild(new FlxGame(gameWidth, gameHeight, initialState, framerate, framerate, skipSplash, startFullscreen));
 
-		#if !mobile
 		fpsVar = new FPS(10, 3, 0xFFFFFF);
 		addChild(fpsVar);
 		Lib.current.stage.align = "tl";
@@ -114,7 +137,6 @@ class Main extends Sprite
 		if(fpsVar != null) {
 			fpsVar.visible = ClientPrefs.showFPS;
 		}
-		#end
 
 		#if html5
 		FlxG.autoPause = false;
