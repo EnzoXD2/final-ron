@@ -155,9 +155,9 @@ class MusicBeatState extends FlxUIState
 	}
 	public function addShader(camera:FlxCamera, shader:String)
 	{
-		if (animatedShaders[shader] == null) new DynamicShaderHandler(shader);
+		/*if (animatedShaders[shader] == null) new DynamicShaderHandler(shader);
 		if (ClientPrefs.shaders)
-			camera.filters.push(new ShaderFilter(animatedShaders[shader].shader));
+			camera._filters.push(new ShaderFilter(animatedShaders[shader].shader));*/
 		
 	}
 	public function clearShader(camera:FlxCamera)

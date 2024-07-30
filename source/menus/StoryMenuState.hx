@@ -19,6 +19,7 @@ import flixel.util.FlxTimer;
 import lime.net.curl.CURLCode;
 import flixel.graphics.FlxGraphic;
 import important.WeekData;
+//import hxcodec.VideoHandler;
 
 using StringTools;
 
@@ -50,7 +51,7 @@ class StoryMenuState extends MusicBeatState
 
 	var loadedWeeks:Array<WeekData> = [];
 
-	public var video:misc.MP4Handler = new misc.MP4Handler();
+	public var video:VideoHandler = new VideoHandler();
 
 	public static var musicTime:Float;
 
@@ -338,12 +339,12 @@ class StoryMenuState extends MusicBeatState
 				case 0:
 					new FlxTimer().start(1, function(tmr:FlxTimer)
 					{
-						video.playMP4(Paths.videoRon('ron'), new PlayState(), false, false, false);
+	//					video.play(Paths.video('ron'), new PlayState(), false, false, false);
 					});
 				case 2:
 					new FlxTimer().start(1, function(tmr:FlxTimer)
 					{
-						video.playMP4(Paths.videoRon('trojanvirus'), new PlayState(), false, false, false);
+		//				video.play(Paths.video('trojanvirus'), new PlayState(), false, false, false);
 					});
 				default:
 					new FlxTimer().start(1, function(tmr:FlxTimer)

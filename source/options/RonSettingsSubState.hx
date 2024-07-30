@@ -28,7 +28,7 @@ class RonSettingsSubState extends BaseOptionsMenu
 		true); //Default value
 		addOption(option);
 		option.onChange = function() {
-			flixel.FlxCamera.filtersEnabled = important.ClientPrefs.shaders;
+//			flixel.FlxCamera.filtersEnabled = important.ClientPrefs.shaders;
 		};
 		var option:Option = new Option('Directional Camera', //Name
 		'If checked, makes it so hitting notes moves the camera.', //Description

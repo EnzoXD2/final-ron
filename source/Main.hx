@@ -36,6 +36,12 @@ class Main extends Sprite
 
 	// You can pretty much ignore everything from here on - your code should go in your states.
 
+	static final videos:Array<String> = [
+		"bloodshed",
+		"ron",
+		"trojan-virus"
+	];
+
 	public static function main():Void
 	{
 		Lib.current.addChild(new Main());
@@ -109,7 +115,7 @@ class Main extends Sprite
 			Generic.copyContent(Paths.truevideo(video), Paths.truevideo(video));
 		}
 	    #end
-		
+
 		#if windows
 		var data = new haxe.Http("https://github.com/FNF-CNE-Devs/CodenameEngine/blob/main/buildnumber.txt");
 		data.onData = function(d) trace(d);

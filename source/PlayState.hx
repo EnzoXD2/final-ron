@@ -30,7 +30,7 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
 import flixel.math.FlxRect;
-import flixel.sound.FlxSound;
+import flixel.system.FlxSound;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
@@ -66,6 +66,7 @@ import gameassets.Achievements;
 import gameassets.StageData;
 import substates.DialogueBoxRon;
 import important.Conductor.Rating;
+//import hxcodec.VideoHandler;
 import substates.*;
 #if sys
 import sys.FileSystem;
@@ -275,7 +276,7 @@ class PlayState extends MusicBeatState
 
 	var precacheList:Map<String, String> = new Map<String, String>();
 
-	var video:MP4Handler = new MP4Handler();
+	var video:VideoHandler = new VideoHandler();
 
 	var satan:BGSprite;
 	var firebg:FlxSprite;
@@ -644,9 +645,9 @@ class PlayState extends MusicBeatState
 			case 'triad':
 			{
 				defaultCamZoom = 0.75;
-				var bg = new FlxBackdrop(Paths.image('bgs/newbgtest/triad/nomajin'), XY, 0, 0);
+				var bg = new FlxBackdrop(Paths.image('bgs/newbgtest/triad/nomajin'), 0, 0);
 				bg.scale.set(2,2);
-				var bgt = new FlxBackdrop(Paths.image('bgs/newbgtest/triad/majinother'), XY, 0, 0);
+				var bgt = new FlxBackdrop(Paths.image('bgs/newbgtest/triad/majinother'), 0, 0);
 				bgt.scale.set(2,2);
 				bg.scrollFactor.set(0.5,0.5);
 				//bg.cameras = [camBg];
@@ -2327,7 +2328,7 @@ class PlayState extends MusicBeatState
 		char.y += char.positionArray[1];
 	}
 
-	public function startVideo(name:String):Void {
+	/*public function startVideo(name:String):Void {
 		#if VIDEOS_ALLOWED
 		var foundFile:Bool = false;
 		var fileName:String = #if MODS_ALLOWED Paths.modFolders('videos/' + name + '.' + Paths.VIDEO_EXT); #else ''; #end
@@ -2369,7 +2370,7 @@ class PlayState extends MusicBeatState
 		}
 		#end
 		startAndEnd();
-	}
+	}*/
 
 	function startAndEnd()
 	{
@@ -4220,7 +4221,7 @@ var cameraTwn:FlxTween;
 				cancelMusicFadeTween();
 				if (SONG.song.toLowerCase() == 'bloodshed')
 				{
-					video.playMP4(Paths.video('bloodshed'), new PlayState(), false, false, false);
+//					video.play(Paths.video('bloodshed'), new PlayState(), false, false, false);
 				}
 				else
 				{

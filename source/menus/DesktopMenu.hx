@@ -2,7 +2,7 @@ package menus;
 
 import important.Song;
 import flixel.addons.ui.FlxUIButton;
-import flixel.sound.FlxSound;
+import flixel.system.FlxSound;
 import flixel.FlxGame;
 import flixel.addons.ui.FlxMultiGamepadAnalogStick.XY;
 import flixel.addons.ui.FlxUIInputText;
@@ -25,6 +25,8 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxTimer;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.text.FlxText;
+//import hxcodec.VideoHandler;
+
 using StringTools;
 
 var rainbowscreen:FlxBackdrop;
@@ -64,8 +66,8 @@ class DesktopMenu extends MusicBeatState
 		persistentUpdate = persistentDraw = true;
 		var iconI:Int = 0;
 		var iconFrames = Paths.getSparrowAtlas("menuIcons");
-		var sanstitre = new FlxBackdrop(Paths.image('sanstitre'), XY, 0, 0);
-		rainbowscreen = new FlxBackdrop(Paths.image('rainbowpcBg'), XY, 0, 0);
+		var sanstitre = new FlxBackdrop(Paths.image('sanstitre'), 0, 0);
+		rainbowscreen = new FlxBackdrop(Paths.image('rainbowpcBg'), 0, 0);
 		var rainbTmr = new FlxTimer().start(0.005, function(tmr:FlxTimer)
 		{
 			rainbowscreen.x += (Math.sin(time)/5)+2;
@@ -110,7 +112,7 @@ class DesktopMenu extends MusicBeatState
 							//	FlxG.camera.fade(0x88FFFFFF, 0.6, false);
 							//	new FlxTimer().start(2, function(tmr:FlxTimer){ FlxG.switchState(new StoryMenuState()); FlxG.camera.fade(0x88FFFFFF, 0, true);});
 							//});
-							var video:misc.MP4Handler = new misc.MP4Handler();
+							var video:VideoHandler = new VideoHandler();
 							openSubState(new misc.CustomFadeTransition(.8, false));
 							new FlxTimer().start(.5, function(tmr:FlxTimer)
 							{
@@ -127,7 +129,7 @@ class DesktopMenu extends MusicBeatState
 								PlayState.campaignMisses = 0;
 								CoolUtil.difficulties = ["Hard"];
 								important.WeekData.reloadWeekFiles(true);
-								video.playMP4(Paths.videoRon('ron'), new PlayState(), false, false, false);
+//								video.play(Paths.video('ron'), new PlayState(), false, false, false);
 							});
 						}
 						else if (icons[i].length != 0)

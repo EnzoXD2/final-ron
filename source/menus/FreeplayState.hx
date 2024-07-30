@@ -23,7 +23,7 @@ import flixel.tweens.FlxTween;
 import flixel.effects.particles.FlxEmitter;
 import flixel.effects.particles.FlxParticle;
 import lime.utils.Assets;
-import flixel.sound.FlxSound;
+import flixel.system.FlxSound;
 import openfl.utils.Assets as OpenFlAssets;
 import important.WeekData;
 
@@ -485,8 +485,8 @@ class FreeplayState extends MusicBeatState
 			
 			if ((songLowercase == 'trojan-virus') && !(FlxG.keys.pressed.ALT))
 			{
-				var video:hxcodec.VideoHandler= new misc.VideoHandler();
-				video.playMP4(Paths.video('trojan-virus'), new PlayState(), false, false, false);
+				var video:VideoHandler = new VideoHandler();
+//				video.play(Paths.video('trojan-virus'), new PlayState(), false, false, false);
 			}
 			else
 				{
